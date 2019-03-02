@@ -1,0 +1,137 @@
+{
+	"name": "korofileheader",
+	"displayName": "koroFileHeader",
+	"description": "一个支持多语言,读取用户设置的自定义模板，通过快捷键添加文件头部注释、在光标处添加函数注释的VsCode插件",
+	"version": "3.6.0",
+	"publisher": "OBKoro1",
+	"author": {
+		"name": "OBKoro1",
+		"email": "obkoro1@foxmail.com",
+		"url": "http://obkoro1.com/"
+	},
+	"galleryBanner": {
+		"color": "#3B4859",
+		"theme": "dark"
+	},
+	"homepage": "https://github.com/OBKoro1/koro1FileHeader",
+	"license": "SEE LICENSE IN LICENSE",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/OBKoro1/koro1FileHeader"
+	},
+	"bugs": {
+		"url": "https://github.com/OBKoro1/koro1FileHeader/issues",
+		"email": "obkoro1@foxmail.com"
+	},
+	"icon": "images/icon.png",
+	"engines": {
+		"vscode": "^1.23.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"keywords": [
+		"vscode",
+		"vscode-fileheader",
+		"fileheader",
+		"Document This"
+	],
+	"activationEvents": [
+		"*",
+		"onCommand:extension.fileheader",
+		"onCommand:extension.cursorTip"
+	],
+	"main": "./src/koroFileHead.js",
+	"contributes": {
+		"configuration": {
+			"type": "object",
+			"title": "File header Configuration",
+			"properties": {
+				"fileheader.customMade": {
+					"type": "object",
+					"default": {},
+					"description": "头部注释,默认设置：{'Author':'your name','Date':'Do not edit','LastEditors':'your name','LastEditTime':'Do not edit','Description':'file content'}"
+				},
+				"fileheader.cursorMode": {
+					"type": "object",
+					"default": {},
+					"description": "在光标处插入函数注释,默认配置:{'description':'','param':'','return':''}"
+				},
+				"fileheader.configObj": {
+					"type": "object",
+					"default": {
+						"createFileTime": true,
+						"timeNoDetail": false,
+						"language": {
+							"languagetest": {
+								"head": "/$$",
+								"middle": " $ @",
+								"end": " $/"
+							}
+						},
+						"autoAdd": false,
+						"autoAlready": true,
+						"annotationStr": {
+							"head": "/*",
+							"middle": " * @",
+							"end": " */",
+							"use": false
+						},
+						"headInsertLine": {
+							"php": 2
+						},
+						"beforeAnnotation": {
+							"py": "#!/usr/bin/env python\n# coding=UTF-8"
+						},
+						"specialOptions": {}
+					},
+					"description": "插件配置选项,readme:https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE"
+				}
+			}
+		},
+		"commands": [
+			{
+				"command": "extension.fileheader",
+				"title": "fileheader"
+			},
+			{
+				"command": "extension.cursorTip",
+				"title": "cursorTip"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "extension.fileheader",
+				"key": "ctrl+alt+i",
+				"mac": "ctrl+cmd+i",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.cursorTip",
+				"key": "ctrl+alt+t",
+				"mac": "ctrl+cmd+t",
+				"when": "editorTextFocus"
+			}
+		]
+	},
+	"scripts": {
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "node ./node_modules/vscode/bin/test",
+		"d": "bash deploy.sh"
+	},
+	"devDependencies": {
+		"@types/mocha": "^2.2.42",
+		"@types/node": "^7.0.43",
+		"eslint": "^4.11.0",
+		"typescript": "^2.6.1",
+		"vscode": "^1.1.21"
+	},
+	"dependencies": {
+		"hoek": "^6.0.4"
+	},
+	"__metadata": {
+		"id": "0398f8a5-da8e-4c21-ae4d-12a40652a517",
+		"publisherId": "471fa7bd-7150-4d78-a6e5-334b290177c0",
+		"publisherDisplayName": "OBKoro1"
+	}
+}
